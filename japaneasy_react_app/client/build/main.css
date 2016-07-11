@@ -127,15 +127,27 @@
 /*RESOURCE INFO*/
 /*======================================================*/
 
+.resource-display {
+  height: 400px;
+  overflow: scroll;
+}
+
+.info-pane {
+  /*height: 400px;*/
+}
+
 .title-and-description {
     display: inline-block;
+    margin-left: 30px;
+    margin-top: 30px;
 }
 
 .resource-image {
     display: inline-block;
     width: 180px;
     height: 220px;
-    margin-top: 50px;
+    margin-left: 20px;
+    margin-bottom: 40px;
     border: 1px solid rgba(0, 0, 0, .2);
     background: #e73f3f;
     text-align: center;
@@ -188,7 +200,7 @@
 /*BORDER CHECK*/
 /*======================================================*/
 
-.resourceDisplay {
+.resource-display {
   border-style: solid;
   border-width: 2px;
   border-color: red;

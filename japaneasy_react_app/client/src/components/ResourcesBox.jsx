@@ -28,7 +28,7 @@ var ResourcesBox = React.createClass({
 
   handleResourceSubmit: function(resource) {
       var resources = this.state.data;
-      resource.id = Date.now();
+      resource._id = { $oid :Date.now() }
       var newResources = resources.concat([resource]);
       this.setState({data: newResources});
 
@@ -38,11 +38,15 @@ var ResourcesBox = React.createClass({
       request.setRequestHeader("Content-Type", "application/json");
       request.onload = function(){
         if(request.status === 200){
-          //wise to make request from server to complete chain.
           this.loadResourcesFromServer();
         }
       }.bind(this)
       request.send( JSON.stringify(resource) );
+    },
+
+    tabSwitch: function(e){
+      // console.log(e.target);
+      e.target.className = "active"
     },
 
   render: function() {
@@ -50,14 +54,13 @@ var ResourcesBox = React.createClass({
       <div className='resourcesBox'>
         <h1>Learning Resources</h1>
         <SubmissionForm onResourceSubmit={this.handleResourceSubmit}/>
-        <div id='tabs'>
-          <ul className='tabs group'>
-            <li onClick={this.tabClick}><a href='#books'>Books</a></li> 
-            <li onClick={this.tabClick}><a href='#music'>Music</a></li> 
-            <li onClick={this.tabClick}><a href='#films'>Films</a></li>
-            <li onClick={this.tabClick}><a href='#games'>Games</a></li> 
-          </ul>
-        </div>
+        
+        <ul className="tabs group">
+          <li onClick={this.tabSwitch}><a href="#Books">Books</a></li> 
+          <li onClick={this.tabSwitch}><a href="#Music">Music</a></li> 
+          <li onClick={this.tabSwitch}><a href="#Films">Films</a></li>
+          <li onClick={this.tabSwitch}><a href="#Games">Games</a></li> 
+        </ul>
 
         <ResourceDisplay data={this.state.data} />
       </div>

@@ -36,7 +36,7 @@ var SubmissionForm = React.createClass({
     if (!medium || !title || !description) {
       return;
     }
-    this.props.onCommentSubmit({medium: medium, title: title, description: description, image: image});
+    this.props.onResourceSubmit({medium: medium, title: title, description: description, image: image});
     this.setState({medium: '', title: '', description: '', image: ''});
   },
 
@@ -46,7 +46,7 @@ var SubmissionForm = React.createClass({
         <h4>Suggest a new learning resource</h4>
         <form className="submissionForm" onSubmit={this.handleSubmit}>
           <label>Select a medium:</label>
-          <select name="medium" onChange={this.handleImageChange}>
+          <select name="medium" onChange={this.handleMediumChange}>
             <option value=""> -- select an option -- </option>
             <option value="Book">Book</option>
             <option value="Music">Music</option>

@@ -3,8 +3,6 @@ var React = require('react');
 var ResourcePanel = React.createClass({
 
   render: function() {
-    console.log(this.props);
-
     return (
       <div className='info-pane'>
         <div className='resource-image'>

@@ -21007,7 +21007,7 @@
 	
 	  handleResourceSubmit: function handleResourceSubmit(resource) {
 	    var resources = this.state.data;
-	    resource.id = Date.now();
+	    resource._id = { $oid: Date.now() };
 	    var newResources = resources.concat([resource]);
 	    this.setState({ data: newResources });
 	
@@ -21017,11 +21017,15 @@
 	    request.setRequestHeader("Content-Type", "application/json");
 	    request.onload = function () {
 	      if (request.status === 200) {
-	        //wise to make request from server to complete chain.
 	        this.loadResourcesFromServer();
 	      }
 	    }.bind(this);
 	    request.send(JSON.stringify(resource));
+	  },
+	
+	  tabSwitch: function tabSwitch(e) {
+	    // console.log(e.target);
+	    e.target.className = "active";
 	  },
 	
 	  render: function render() {
@@ -21035,46 +21039,42 @@
 	      ),
 	      React.createElement(SubmissionForm, { onResourceSubmit: this.handleResourceSubmit }),
 	      React.createElement(
-	        'div',
-	        { id: 'tabs' },
+	        'ul',
+	        { className: 'tabs group' },
 	        React.createElement(
-	          'ul',
-	          { className: 'tabs group' },
+	          'li',
+	          { onClick: this.tabSwitch },
 	          React.createElement(
-	            'li',
-	            { onClick: this.tabClick },
-	            React.createElement(
-	              'a',
-	              { href: '#books' },
-	              'Books'
-	            )
-	          ),
+	            'a',
+	            { href: '#Books' },
+	            'Books'
+	          )
+	        ),
+	        React.createElement(
+	          'li',
+	          { onClick: this.tabSwitch },
 	          React.createElement(
-	            'li',
-	            { onClick: this.tabClick },
-	            React.createElement(
-	              'a',
-	              { href: '#music' },
-	              'Music'
-	            )
-	          ),
+	            'a',
+	            { href: '#Music' },
+	            'Music'
+	          )
+	        ),
+	        React.createElement(
+	          'li',
+	          { onClick: this.tabSwitch },
 	          React.createElement(
-	            'li',
-	            { onClick: this.tabClick },
-	            React.createElement(
-	              'a',
-	              { href: '#films' },
-	              'Films'
-	            )
-	          ),
+	            'a',
+	            { href: '#Films' },
+	            'Films'
+	          )
+	        ),
+	        React.createElement(
+	          'li',
+	          { onClick: this.tabSwitch },
 	          React.createElement(
-	            'li',
-	            { onClick: this.tabClick },
-	            React.createElement(
-	              'a',
-	              { href: '#games' },
-	              'Games'
-	            )
+	            'a',
+	            { href: '#Games' },
+	            'Games'
 	          )
 	        )
 	      ),
@@ -21112,7 +21112,7 @@
 	
 	    return React.createElement(
 	      'div',
-	      { className: 'resourceDisplay' },
+	      { className: 'resource-display' },
 	      resourceNodes
 	    );
 	  }
@@ -21134,8 +21134,6 @@
 	
 	
 	  render: function render() {
-	    console.log(this.props);
-	
 	    return React.createElement(
 	      'div',
 	      { className: 'info-pane' },
@@ -21207,7 +21205,7 @@
 	    if (!medium || !title || !description) {
 	      return;
 	    }
-	    this.props.onCommentSubmit({ medium: medium, title: title, description: description, image: image });
+	    this.props.onResourceSubmit({ medium: medium, title: title, description: description, image: image });
 	    this.setState({ medium: '', title: '', description: '', image: '' });
 	  },
 	
@@ -21230,7 +21228,7 @@
 	        ),
 	        React.createElement(
 	          'select',
-	          { name: 'medium', onChange: this.handleImageChange },
+	          { name: 'medium', onChange: this.handleMediumChange },
 	          React.createElement(
 	            'option',
 	            { value: '' },

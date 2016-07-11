@@ -15,7 +15,7 @@ var ResourceDisplay = React.createClass({
     });
 
     return(
-      <div className='resourceDisplay'>
+      <div className='resource-display'>
         {resourceNodes}
       </div>
     );
