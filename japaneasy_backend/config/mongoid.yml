@@ -1,0 +1,14 @@
+defaults: &defaults
+  host: localhost:5000
+
+development:
+  <<: *defaults
+  database: japaneasy
+
+test:
+  <<: *defaults
+  database: japaneasy
+
+production:
+  host: <%= ENV['MONGOID_HOST'] %>
+  port: <%= ENV['MONGOID_PORT'] %>
