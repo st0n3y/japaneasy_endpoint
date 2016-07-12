@@ -12,7 +12,7 @@ var ResourcesBox = React.createClass({
     request.onload = function() {
       if(request.status === 200) {
         var data = JSON.parse(request.responseText);
-        this.setState({data: data})
+        this.setState({data: data});
       }
     }.bind(this);
     request.send(null);
@@ -23,46 +23,64 @@ var ResourcesBox = React.createClass({
   },
 
   getInitialState: function() {
-    return {data: []};
+    return {
+      data: [], 
+      displayMedium:"Book"
+    };
   },
 
   handleResourceSubmit: function(resource) {
-      var resources = this.state.data;
-      resource._id = { $oid :Date.now() }
-      var newResources = resources.concat([resource]);
-      this.setState({data: newResources});
+    var resources = this.state.data;
+    resource._id = { $oid :Date.now() }
+    var newResources = resources.concat([resource]);
+    this.setState({data: newResources});
 
-      var url = this.props.url;
-      var request = new XMLHttpRequest();
-      request.open("POST", url, true);
-      request.setRequestHeader("Content-Type", "application/json");
-      request.onload = function(){
-        if(request.status === 200){
-          this.loadResourcesFromServer();
-        }
-      }.bind(this)
-      request.send( JSON.stringify(resource) );
-    },
+    var url = this.props.url;
+    var request = new XMLHttpRequest();
+    request.open("POST", url, true);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.onload = function(){
+      if(request.status === 200){
+        this.loadResourcesFromServer();
+      }
+    }.bind(this)
+    request.send( JSON.stringify(resource) );
+  },
 
-    tabSwitch: function(e){
-      // console.log(e.target);
-      e.target.className = "active"
-    },
+  setMedium:function(e){
+    let newMedium = e.target.getAttribute('data-medium')
+    this.setState({displayMedium: newMedium})
+  },
+
+  filterByMedium: function(mediumName){
+    var newDisplayData = this.state.data.filter(function(item) {
+      return item.medium === mediumName
+    });
+    return newDisplayData
+  },
 
   render: function() {
     return(
-      <div className='resourcesBox'>
+      <div className="resourcesBox">
         <h1>Learning Resources</h1>
-        <SubmissionForm onResourceSubmit={this.handleResourceSubmit}/>
         
-        <ul className="tabs group">
-          <li onClick={this.tabSwitch}><a href="#Books">Books</a></li> 
-          <li onClick={this.tabSwitch}><a href="#Music">Music</a></li> 
-          <li onClick={this.tabSwitch}><a href="#Films">Films</a></li>
-          <li onClick={this.tabSwitch}><a href="#Games">Games</a></li> 
+        <div id="pagegradient"></div>
+
+        
+        
+        <ul className="tabs">
+          <li onClick={ this.setMedium } className="active"><a data-medium="Book" href="#Book">Books</a></li>
+          <li onClick={ this.setMedium }><a data-medium="Music" href="#Music">Music</a></li>
+          <li onClick={ this.setMedium }><a data-medium="Film" href="#Films">Films</a></li>
+          <li onClick={ this.setMedium }><a data-medium="Game" href="#Games">Games</a></li>
+
+          {/*Alternative method using anonymous function*/}
+          {/*<li onClick={ function(){ this.setMedium("Game") }.bind(this)}><a href="#Games">Games</a></li> */}
         </ul>
 
-        <ResourceDisplay data={this.state.data} />
+        <ResourceDisplay data={ this.filterByMedium( this.state.displayMedium ) } />
+
+        <SubmissionForm onResourceSubmit={this.handleResourceSubmit}/>
       </div>
     );
   }

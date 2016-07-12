@@ -4,7 +4,6 @@ var ResourcePanel = require('./ResourcePanel.jsx');
 var ResourceDisplay = React.createClass({
 
   render: function() {
-    console.log(this.props.data);
 
     var resourceNodes = this.props.data.map(function(resource, index) {
       return (

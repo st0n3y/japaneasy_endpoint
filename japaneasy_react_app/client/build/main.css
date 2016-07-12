@@ -1,5 +1,13 @@
 @charset "utf-8";
 
+* {
+  list-style: none;
+}
+
+body {
+  background: #bfdcea;
+}
+
 /*======================================================*/
 /*NAV BAR*/
 /*======================================================*/
@@ -31,6 +39,10 @@
 /*======================================================*/
 /*FOLDER TABS*/
 /*======================================================*/
+
+.tabs {
+  display: inline-block;
+}
 
 .tabs li { 
   /* Makes a horizontal row */
@@ -68,7 +80,7 @@
 
 .tabs .active a { 
   /* Colors when tab is active */
-  background: #dee2e5; 
+  background: #white; 
   color: black; 
 }
 
@@ -78,15 +90,6 @@
      abs. positioned and on bottom */
   position: absolute;
   bottom: 0;
-}
-
-/* Only the first, last, and active
-   tabs need pseudo elements at all */
-.tabs li:last-child:after,   .tabs li:last-child a:after,
-.tabs li:first-child:before, .tabs li:first-child a:before,
-.tabs .active:after,   .tabs .active:before, 
-.tabs .active a:after, .tabs .active a:before {
-  content: "";
 }
 
 .tabs .active:before, .tabs .active:after {
@@ -129,11 +132,15 @@
 
 .resource-display {
   height: 400px;
+  width: 85%;
   overflow: scroll;
+  margin-top: -20px;
+  margin-left: 40px;
 }
 
 .info-pane {
   /*height: 400px;*/
+  background: white;
 }
 
 .title-and-description {
@@ -148,9 +155,26 @@
     height: 220px;
     margin-left: 20px;
     margin-bottom: 40px;
+    padding-top: -10px;
     border: 1px solid rgba(0, 0, 0, .2);
     background: #e73f3f;
     text-align: center;
+}
+
+/*======================================================*/
+/*MODAL BUTTON*/
+/*======================================================*/
+
+#modal-button {
+  width: 150px;
+  height: 75px;
+  background: green;
+  text-align: center;
+  float: right;
+}
+
+#modal-button p {
+  padding-top: 10px;
 }
 
 /*======================================================*/
@@ -200,7 +224,7 @@
 /*BORDER CHECK*/
 /*======================================================*/
 
-.resource-display {
+/*.resource-display {
   border-style: solid;
   border-width: 2px;
   border-color: red;
@@ -212,8 +236,130 @@
   border-color: purple;
 }
 
-#tabs {
+.tabs {
   border-style: solid;
   border-width: 2px;
   border-color: green;
+}*/
+
+/*======================================================*/
+/*JUMP BUTTON/
+/*======================================================*/
+
+
+
+/*======================================================*/
+/*SUBMISSION FORM*/
+/*======================================================*/
+
+.submission-form{
+    max-width: 500px;
+    padding: 10px 20px;
+    background: white;
+    margin: 10px auto;
+    padding: 20px;
+    border-radius: 8px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.submission-form fieldset{
+    border: none;
+}
+
+.submission-form legend {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+.submission-form label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.submission-form input[type="text"],
+.submission-form input[type="date"],
+.submission-form input[type="datetime"],
+.submission-form input[type="email"],
+.submission-form input[type="number"],
+.submission-form input[type="search"],
+.submission-form input[type="time"],
+.submission-form input[type="url"],
+.submission-form textarea,
+.submission-form select {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    background: rgba(255,255,255,.1);
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    margin: 0;
+    outline: 0;
+    padding: 7px;
+    width: 100%;
+    box-sizing: border-box; 
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box; 
+    background-color: #e8eeef;
+    color:#8a97a0;
+    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    margin-bottom: 30px;
+    
+}
+
+.submission-form input[type="text"]:focus,
+.submission-form textarea:focus,
+.submission-form select:focus{
+    background: #d2d9dd;
+}
+
+.submission-form select{
+    -webkit-appearance: menulist-button;
+    height:35px;
+}
+
+.submission-form .number {
+    background: #e73f3f;
+    color: #fff;
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    font-size: 0.8em;
+    margin-right: 4px;
+    line-height: 30px;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+    border-radius: 15px 15px 15px 0px;
+}
+
+.submission-form input[type="submit"] {
+    position: relative;
+    display: block;
+    padding: 19px 39px 18px 39px;
+    color: #FFF;
+    margin: 0 auto;
+    background: #333;
+    font-size: 18px;
+    text-align: center;
+    font-style: normal;
+    width: 100%;
+    border: 1px solid #black;
+    border-width: 1px 1px 3px;
+    margin-bottom: 10px;
+}
+
+.submission-form input[type="submit"]:hover
+{
+    color: #333;
+    background-position: 0 0;
+}
+
+.submission-form input[type="submit"] {       
+  color:#white;
+  padding:20px;
+  width:100%;
+  display: block;
+  background-image: linear-gradient(to left, transparent, transparent 50%, #e73f3f 50%, #e73f3f);
+  background-position: 100% 0;
+  background-size: 200% 100%;
+  transition: all .25s ease-in;                   
 }

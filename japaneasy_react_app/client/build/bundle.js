@@ -21002,7 +21002,10 @@
 	  },
 	
 	  getInitialState: function getInitialState() {
-	    return { data: [] };
+	    return {
+	      data: [],
+	      displayMedium: "Book"
+	    };
 	  },
 	
 	  handleResourceSubmit: function handleResourceSubmit(resource) {
@@ -21023,9 +21026,16 @@
 	    request.send(JSON.stringify(resource));
 	  },
 	
-	  tabSwitch: function tabSwitch(e) {
-	    // console.log(e.target);
-	    e.target.className = "active";
+	  setMedium: function setMedium(e) {
+	    var newMedium = e.target.getAttribute('data-medium');
+	    this.setState({ displayMedium: newMedium });
+	  },
+	
+	  filterByMedium: function filterByMedium(mediumName) {
+	    var newDisplayData = this.state.data.filter(function (item) {
+	      return item.medium === mediumName;
+	    });
+	    return newDisplayData;
 	  },
 	
 	  render: function render() {
@@ -21037,48 +21047,49 @@
 	        null,
 	        'Learning Resources'
 	      ),
-	      React.createElement(SubmissionForm, { onResourceSubmit: this.handleResourceSubmit }),
+	      React.createElement('div', { id: 'pagegradient' }),
 	      React.createElement(
 	        'ul',
-	        { className: 'tabs group' },
+	        { className: 'tabs' },
 	        React.createElement(
 	          'li',
-	          { onClick: this.tabSwitch },
+	          { onClick: this.setMedium, className: 'active' },
 	          React.createElement(
 	            'a',
-	            { href: '#Books' },
+	            { 'data-medium': 'Book', href: '#Book' },
 	            'Books'
 	          )
 	        ),
 	        React.createElement(
 	          'li',
-	          { onClick: this.tabSwitch },
+	          { onClick: this.setMedium },
 	          React.createElement(
 	            'a',
-	            { href: '#Music' },
+	            { 'data-medium': 'Music', href: '#Music' },
 	            'Music'
 	          )
 	        ),
 	        React.createElement(
 	          'li',
-	          { onClick: this.tabSwitch },
+	          { onClick: this.setMedium },
 	          React.createElement(
 	            'a',
-	            { href: '#Films' },
+	            { 'data-medium': 'Film', href: '#Films' },
 	            'Films'
 	          )
 	        ),
 	        React.createElement(
 	          'li',
-	          { onClick: this.tabSwitch },
+	          { onClick: this.setMedium },
 	          React.createElement(
 	            'a',
-	            { href: '#Games' },
+	            { 'data-medium': 'Game', href: '#Games' },
 	            'Games'
 	          )
 	        )
 	      ),
-	      React.createElement(ResourceDisplay, { data: this.state.data })
+	      React.createElement(ResourceDisplay, { data: this.filterByMedium(this.state.displayMedium) }),
+	      React.createElement(SubmissionForm, { onResourceSubmit: this.handleResourceSubmit })
 	    );
 	  }
 	
@@ -21100,7 +21111,6 @@
 	
 	
 	  render: function render() {
-	    console.log(this.props.data);
 	
 	    var resourceNodes = this.props.data.map(function (resource, index) {
 	      return React.createElement(
@@ -21151,7 +21161,8 @@
 	          this.props.title
 	        ),
 	        this.props.children
-	      )
+	      ),
+	      React.createElement('hr', null)
 	    );
 	  }
 	
@@ -21212,86 +21223,93 @@
 	  render: function render() {
 	    return React.createElement(
 	      'div',
-	      { id: 'submit-form' },
+	      null,
 	      React.createElement(
-	        'h4',
-	        null,
-	        'Suggest a new learning resource'
-	      ),
-	      React.createElement(
-	        'form',
-	        { className: 'submissionForm', onSubmit: this.handleSubmit },
+	        'div',
+	        { className: 'submission-form', onSubmit: this.handleSubmit },
 	        React.createElement(
-	          'label',
+	          'form',
 	          null,
-	          'Select a medium:'
-	        ),
-	        React.createElement(
-	          'select',
-	          { name: 'medium', onChange: this.handleMediumChange },
 	          React.createElement(
-	            'option',
-	            { value: '' },
-	            ' -- select an option -- '
+	            'legend',
+	            null,
+	            React.createElement(
+	              'span',
+	              { className: 'number' },
+	              '1'
+	            ),
+	            'Select a Medium'
 	          ),
 	          React.createElement(
-	            'option',
-	            { value: 'Book' },
-	            'Book'
+	            'select',
+	            { id: 'material', name: 'medium', onChange: this.handleMediumChange },
+	            React.createElement(
+	              'option',
+	              { value: '' },
+	              ' -- select an option -- '
+	            ),
+	            React.createElement(
+	              'option',
+	              { value: 'Book' },
+	              'Book'
+	            ),
+	            React.createElement(
+	              'option',
+	              { value: 'Music' },
+	              'Music'
+	            ),
+	            React.createElement(
+	              'option',
+	              { value: 'Film' },
+	              'Film'
+	            ),
+	            React.createElement(
+	              'option',
+	              { value: 'Game' },
+	              'Game'
+	            )
 	          ),
 	          React.createElement(
-	            'option',
-	            { value: 'Music' },
-	            'Music'
+	            'legend',
+	            null,
+	            React.createElement(
+	              'span',
+	              { className: 'number' },
+	              '2'
+	            ),
+	            'Tell us the title'
 	          ),
+	          React.createElement('input', { type: 'text', name: 'title', placeholder: 'Type here...', onChange: this.handleTitleChange }),
 	          React.createElement(
-	            'option',
-	            { value: 'Film' },
-	            'Film'
+	            'legend',
+	            null,
+	            React.createElement(
+	              'span',
+	              { className: 'number' },
+	              '3'
+	            ),
+	            'Add a description'
 	          ),
+	          React.createElement('textarea', { name: 'description', placeholder: 'Type here...', onChange: this.handleDescriptionChange }),
 	          React.createElement(
-	            'option',
-	            { value: 'Game' },
-	            'Game'
-	          )
-	        ),
-	        React.createElement(
-	          'label',
-	          null,
-	          'Tell us the title:'
-	        ),
-	        React.createElement('input', {
-	          type: 'text',
-	          name: 'title',
-	          placeholder: 'Type here...',
-	          value: this.state.title,
-	          onChange: this.handleTitleChange
-	        }),
-	        React.createElement(
-	          'label',
-	          null,
-	          'Add a description'
-	        ),
-	        React.createElement('input', {
-	          type: 'text',
-	          name: 'description',
-	          placeholder: 'Type here...',
-	          value: this.state.description,
-	          onChange: this.handleDescriptionChange
-	        }),
-	        React.createElement(
-	          'label',
-	          null,
-	          'Upload image:'
-	        ),
-	        React.createElement('input', {
-	          type: 'file',
-	          name: 'image',
-	          accept: 'image/*',
-	          value: this.state.image,
-	          onChange: this.handleImageChange
-	        }),
-	        React.createElement('input', { type: 'submit', value: 'Submit suggestion' })
+	            'legend',
+	            null,
+	            React.createElement(
+	              'span',
+	              { className: 'number' },
+	              '4'
+	            ),
+	            'Upload an image (optional)'
+	          ),
+	          React.createElement('input', {
+	            type: 'file',
+	            name: 'image',
+	            accept: 'image/*',
+	            value: this.state.image,
+	            onChange: this.handleImageChange
+	          }),
+	          React.createElement('input', { type: 'submit', value: 'Submit suggestion' })
+	        )
 	      )
 	    );
 	  }

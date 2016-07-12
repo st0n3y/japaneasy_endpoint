@@ -14,7 +14,7 @@ var ResourcePanel = React.createClass({
           </h3>
           {this.props.children}
         </div>
-        
+        <hr/>
       </div>
     );
   }

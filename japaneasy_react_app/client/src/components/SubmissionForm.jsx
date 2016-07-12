@@ -42,43 +42,39 @@ var SubmissionForm = React.createClass({
 
   render: function() {
     return (
-      <div id="submit-form">
-        <h4>Suggest a new learning resource</h4>
-        <form className="submissionForm" onSubmit={this.handleSubmit}>
-          <label>Select a medium:</label>
-          <select name="medium" onChange={this.handleMediumChange}>
-            <option value=""> -- select an option -- </option>
-            <option value="Book">Book</option>
-            <option value="Music">Music</option>
-            <option value="Film">Film</option>
-            <option value="Game">Game</option>
-          </select>
-          <label>Tell us the title:</label>
-          <input 
-            type="text" 
-            name="title"
-            placeholder="Type here..." 
-            value={this.state.title}
-            onChange={this.handleTitleChange}
-          />
-          <label>Add a description</label>
-          <input 
-            type="text" 
-            name="description"
-            placeholder="Type here..." 
-            value={this.state.description}
-            onChange={this.handleDescriptionChange}
-          />
-          <label>Upload image:</label>
-          <input 
-          type="file" 
-          name="image" 
-          accept="image/*"
-          value={this.state.image}
-          onChange={this.handleImageChange}
-          />
-          <input type="submit" value="Submit suggestion"/>
-      </form>
+      
+
+    <div>
+      <div className="submission-form" onSubmit={this.handleSubmit}>
+        <form>
+
+        <legend><span className="number">1</span>Select a Medium</legend>
+        <select id="material" name="medium" onChange={this.handleMediumChange}>
+          <option value=""> -- select an option -- </option>
+          <option value="Book">Book</option>
+          <option value="Music">Music</option>
+          <option value="Film">Film</option>
+          <option value="Game">Game</option>
+        </select>
+        
+        <legend><span className="number">2</span>Tell us the title</legend>
+        <input type="text" name="title" placeholder="Type here..." onChange={this.handleTitleChange} />
+
+        <legend><span className="number">3</span>Add a description</legend>
+        <textarea name="description" placeholder="Type here..." onChange={this.handleDescriptionChange}></textarea>
+
+        <legend><span className="number">4</span>Upload an image (optional)</legend>
+        <input 
+        type="file" 
+        name="image" 
+        accept="image/*"
+        value={this.state.image}
+        onChange={this.handleImageChange}
+        />
+
+        <input type="submit" value="Submit suggestion" />
+        </form>
+      </div>
     </div>
     );
   }
