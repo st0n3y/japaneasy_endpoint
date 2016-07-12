@@ -62,17 +62,16 @@ var ResourcesBox = React.createClass({
   render: function() {
     return(
       <div className="resourcesBox">
+        <a name="top"></a>
         <h1>Learning Resources</h1>
-        
-        <div id="pagegradient"></div>
-
-        
+  
+        <a href="#form" className="clicky" onclick={this.scrollToBottom}>Suggest a resource</a>
         
         <ul className="tabs">
-          <li onClick={ this.setMedium } className="active"><a data-medium="Book" href="#Book">Books</a></li>
-          <li onClick={ this.setMedium }><a data-medium="Music" href="#Music">Music</a></li>
-          <li onClick={ this.setMedium }><a data-medium="Film" href="#Films">Films</a></li>
-          <li onClick={ this.setMedium }><a data-medium="Game" href="#Games">Games</a></li>
+          <li onClick={this.setMedium} className="active"><a data-medium="Book" href="#Book">Books</a></li>
+          <li onClick={this.setMedium}><a data-medium="Music" href="#Music">Music</a></li>
+          <li onClick={this.setMedium}><a data-medium="Film" href="#Films">Films</a></li>
+          <li onClick={this.setMedium}><a data-medium="Game" href="#Games">Games</a></li>
 
           {/*Alternative method using anonymous function*/}
           {/*<li onClick={ function(){ this.setMedium("Game") }.bind(this)}><a href="#Games">Games</a></li> */}
@@ -81,6 +80,7 @@ var ResourcesBox = React.createClass({
         <ResourceDisplay data={ this.filterByMedium( this.state.displayMedium ) } />
 
         <SubmissionForm onResourceSubmit={this.handleResourceSubmit}/>
+        <a href="#top" name="form">&copy; David MacKintosh, 2016</a>
       </div>
     );
   }

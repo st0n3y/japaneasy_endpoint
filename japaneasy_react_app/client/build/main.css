@@ -131,7 +131,7 @@ body {
 /*======================================================*/
 
 .resource-display {
-  height: 400px;
+  height: 500px;
   width: 85%;
   overflow: scroll;
   margin-top: -20px;
@@ -246,7 +246,87 @@ body {
 /*JUMP BUTTON/
 /*======================================================*/
 
+.glass{
+/* background styles */
+position: relative;
+display: inline-block;
+float: right;
+padding: 15px 25px;
+margin-top: -10px;
+background: #ce1414; /*for compatibility with older browsers*/
+background-image: linear-gradient(#ce1414,#c74c4c);
 
+/* text styles */
+text-decoration: none;
+color: #fff;
+font-size: 25px;
+font-family: sans-serif;
+font-weight: 100;
+
+border-radius: 3px;
+box-shadow: 0px 1px 4px -2px #333;
+text-shadow: 0px -1px #333;
+}
+
+.glass:after{
+content: '';
+position: absolute;
+top: 2px;
+left: 2px;
+width: calc(100% - 4px);
+height: 50%;
+background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+}
+
+.glass:hover{
+background: linear-gradient(#981111,#a14444);
+}
+
+
+.clicky {
+  /** Offset the Position **/
+  position: relative;
+  display: inline-block;
+  float: right;
+  padding: 15px 25px;
+  margin-top: -20px;
+
+  /** 3D Block Effect **/
+  box-shadow: 0 10px 0 0 #6B2A4A;
+
+  /** Make it look pretty **/
+  display: block;
+  background: #ce1414; /*for compatibility with older browsers*/
+  background-image: linear-gradient(#ce1414,#c74c4c);
+  text-decoration: none;
+  color: #fff;
+  font-size: 25px;
+  font-family: sans-serif;
+  font-weight: 100;
+  padding: 0.5em 1em;
+  border: 0;
+  cursor: pointer;
+  font-size: 1.2em;
+  opacity: 0.9;
+  border-radius: 10px;
+}
+
+.clicky:active {
+  /** Remove 3D Block Effect on Click **/
+  box-shadow: none;
+  top: 10px;
+  margin-bottom: 0;
+}
+
+.clicky:hover {
+  opacity: 1;
+}
+
+.clicky:active,
+.clicky:focus {
+  /** Remove Chrome's Ugly Yellow Outline **/
+  outline: 0;
+}
 
 /*======================================================*/
 /*SUBMISSION FORM*/

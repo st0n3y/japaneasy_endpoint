@@ -21042,12 +21042,17 @@
 	    return React.createElement(
 	      'div',
 	      { className: 'resourcesBox' },
+	      React.createElement('a', { name: 'top' }),
 	      React.createElement(
 	        'h1',
 	        null,
 	        'Learning Resources'
 	      ),
-	      React.createElement('div', { id: 'pagegradient' }),
+	      React.createElement(
+	        'a',
+	        { href: '#form', className: 'clicky', onclick: this.scrollToBottom },
+	        'Suggest a resource'
+	      ),
 	      React.createElement(
 	        'ul',
 	        { className: 'tabs' },
@@ -21089,7 +21094,12 @@
 	        )
 	      ),
 	      React.createElement(ResourceDisplay, { data: this.filterByMedium(this.state.displayMedium) }),
-	      React.createElement(SubmissionForm, { onResourceSubmit: this.handleResourceSubmit })
+	      React.createElement(SubmissionForm, { onResourceSubmit: this.handleResourceSubmit }),
+	      React.createElement(
+	        'a',
+	        { href: '#top', name: 'form' },
+	        '© David MacKintosh, 2016'
+	      )
 	    );
 	  }
 	
