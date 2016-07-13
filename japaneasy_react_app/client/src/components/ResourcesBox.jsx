@@ -65,7 +65,7 @@ var ResourcesBox = React.createClass({
         <a name="top"></a>
         <h1>Learning Resources</h1>
   
-        <a href="#form" className="clicky" onclick={this.scrollToBottom}>Suggest a resource</a>
+        <a href="#form" className="clicky">Suggest a resource</a>
         
         <ul className="tabs">
           <li onClick={this.setMedium} className="active"><a data-medium="Book" href="#Book">Books</a></li>
@@ -80,7 +80,8 @@ var ResourcesBox = React.createClass({
         <ResourceDisplay data={ this.filterByMedium( this.state.displayMedium ) } />
 
         <SubmissionForm onResourceSubmit={this.handleResourceSubmit}/>
-        <a href="#top" name="form">&copy; David MacKintosh, 2016</a>
+        <a href="#top" name="form">Back to the top</a>
+        <p>&copy; David MacKintosh, 2016</p>
       </div>
     );
   }

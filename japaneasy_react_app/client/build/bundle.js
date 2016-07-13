@@ -21050,7 +21050,7 @@
 	      ),
 	      React.createElement(
 	        'a',
-	        { href: '#form', className: 'clicky', onclick: this.scrollToBottom },
+	        { href: '#form', className: 'clicky' },
 	        'Suggest a resource'
 	      ),
 	      React.createElement(
@@ -21098,6 +21098,11 @@
 	      React.createElement(
 	        'a',
 	        { href: '#top', name: 'form' },
+	        'Back to the top'
+	      ),
+	      React.createElement(
+	        'p',
+	        null,
 	        '© David MacKintosh, 2016'
 	      )
 	    );
