@@ -4,7 +4,7 @@ To install dependencies: npm install
 
 Open the client folder in a separate tab.
 
-In both tabs, execute: webpack -w
+In both tabs, execute: npm start
 
 In another new terminal tab, open japaneasy_rails.
 
